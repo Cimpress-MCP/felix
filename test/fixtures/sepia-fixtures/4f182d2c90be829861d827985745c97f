@@ -1,0 +1,36 @@
+{
+  "source":{
+    "id":113351794,
+    "name":"team-aws-cloudtrail",
+    "description":"redacted",
+    "category":"my/sumo/category",
+    "automaticDateParsing":true,
+    "multilineProcessingEnabled":false,
+    "useAutolineMatching":false,
+    "contentType":"AwsCloudTrailBucket",
+    "forceTimeZone":false,
+    "timeZone":"GMT",
+    "filters":[],
+    "cutoffTimestamp":1460952000000,
+    "encoding":"UTF-8",
+    "thirdPartyRef":{
+      "resources":[{
+        "serviceType":"AwsCloudTrailBucket",
+        "path":{
+          "type":"S3BucketPathExpression",
+          "bucketName":"cloudtrail-log-global",
+          "pathExpression":"*"
+        },
+        "authentication":{
+          "type":"S3BucketAuthentication",
+          "awsId":"AKIAIVO7QLOLDEXAMPLE",
+          "awsKey":"********"
+        }
+      }]
+    },
+    "scanInterval":300000,
+    "paused":false,
+    "sourceType":"Polling",
+    "alive":true
+  }
+}

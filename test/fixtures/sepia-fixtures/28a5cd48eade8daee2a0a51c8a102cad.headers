@@ -1,0 +1,30 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "cache-control": "no-cache, no-store, max-age=0, must-revalidate, no-cache=\"set-cookie\"",
+    "content-type": "application/json",
+    "date": "Wed, 05 Jul 2017 12:50:02 GMT",
+    "expires": "Thu, 01-Jan-1970 00:00:00 GMT",
+    "pragma": "no-cache",
+    "set-cookie": [
+      "JSESSIONID=w7e61rj7onmefynr5elqv89b;Path=/api",
+      "AWSELB=D9214D6508307E89860421CAE8AF3C4B5AD79788045657CFCB2CBDA5B26AB6365C4D4F4062E81FF4AF4B2A9F21E2DD58144B4E783E9DBE963B2BBCDC28AE8201575F9682DF;PATH=/"
+    ],
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+    "x-xss-protection": "1; mode=block",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive"
+  },
+  "url": "http://api.us2.sumologic.com:443/api/v1/collectors/102990815/sources?limit=300&offset=300",
+  "time": 573,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "Content-Type": "application/json",
+      "host": "api.us2.sumologic.com",
+      "authorization": "Basic redacted",
+      "accept": "application/json"
+    }
+  }
+}

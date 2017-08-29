@@ -1,0 +1,138 @@
+service: felix
+plugins:
+  - serverless-plugin-common-excludes
+package:
+  exclude:
+    - test/**
+    - reports/**
+    - .gitlab/**
+    - node_modules/.bin/**
+    - node_modules/**/tests/**
+    - node_modules/**/tst/**
+    - node_modules/**/spec/**
+  excludeDevDependencies: true
+frameworkVersion: ">=1.0.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: prd
+  region: us-east-1
+  custom:
+    defaultAdmin: root
+    kmsAdminName: ${env:AWS_KMS_ADMIN_ROLE, self:provider.custom.defaultAdmin}
+  iamRoleStatements:
+     - Effect: "Allow"
+       Action:
+         - "s3:ListBucket"
+       Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+     - Effect: "Allow"
+       Action:
+         - "s3:PutObject"
+       Resource:
+         Fn::Join:
+           - ""
+           - - "arn:aws:s3:::"
+             - "Ref" : "ServerlessDeploymentBucket"
+     - Effect: "Allow"
+       Action:
+         - "iam:CreateAccessKey"
+         - "iam:UpdateAccessKey"
+         - "iam:DeleteAccessKey"
+         - "iam:ListUsers"
+         - "iam:GetUser"
+         - "iam:ListAccessKeys"
+         - "iam:GetAccessKeyLastUsed"
+       Resource: { "Fn::Join" : ["", [ "arn:aws:iam:", ":", { Ref: "AWS::AccountId" }, ":user/service/*" ] ] }
+     - Effect: "Allow"
+       Action:
+         - "ssm:DescribeParameters"
+       Resource: { "Fn::Join" : ["", [ "arn:aws:ssm", ":", { Ref: "AWS::Region" }, ":", { Ref: "AWS::AccountId" }, ":parameter/*" ] ] }
+     - Effect: "Allow"
+       Action:
+         - "ssm:GetParameters"
+         - "ssm:GetParametersByPath"
+       Resource: { "Fn::Join" : ["", [ "arn:aws:ssm", ":", { Ref: "AWS::Region" }, ":", { Ref: "AWS::AccountId" }, ":parameter/felix/*" ] ] }
+     - Effect: "Allow"
+       Action:
+         - "kms:decrypt"
+       Resource: { "Fn::GetAtt": ["felixKey", "Arn"] }
+     - Effect: "Allow"
+       Action:
+         - "sns:Publish"
+       Resource: { "Ref": "reportsTopic" }
+
+functions:
+  rotate:
+    handler: handler.rotate
+    timeout: 30
+    events:
+      - schedule: cron(0 8 */2 * ? *)
+
+resources:
+  Resources:
+    reportsTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        DisplayName: Felix
+        TopicName: FelixReports
+    felixKeyAlias:
+      Type: AWS::KMS::Alias
+      Properties:
+        AliasName: 'alias/felix/settings'
+        TargetKeyId: { Ref: "felixKey" }
+    felixKey:
+      Type: AWS::KMS::Key
+      Properties:
+        Description: For encrypting SSM Parameters used by Felix
+        Enabled: true
+        EnableKeyRotation: true
+        KeyPolicy:
+          Version: "2012-10-17"
+          Id: 'felix-key-policy'
+          Statement:
+            -
+              Sid: "allow-account-owner-admin"
+              Effect: Allow
+              Principal:
+                AWS: { "Fn::Join" : ["", [ "arn:aws:iam:", ":", { Ref: "AWS::AccountId" }, ":root" ] ] }
+              Action:
+                - "kms:*"
+              Resource: "*"
+            -
+              Sid: "allow-admin-access"
+              Effect: Allow
+              Principal:
+                AWS: { "Fn::Join" : ["", [ "arn:aws:iam:", ":", { Ref: "AWS::AccountId" }, ":${self:provider.custom.kmsAdminName}" ] ] }
+              Action:
+                - "kms:Create*"
+                - "kms:Describe*"
+                - "kms:Enable*"
+                - "kms:List*"
+                - "kms:Put*"
+                - "kms:Update*"
+                - "kms:Revoke*"
+                - "kms:Disable*"
+                - "kms:Get*"
+                - "kms:Delete*"
+                - "kms:TagResource"
+                - "kms:UntagResource"
+                - "kms:ScheduleKeyDeletion"
+                - "kms:CancelKeyDeletion"
+              Resource: "*"
+            -
+              Sid: "allow-ssm-use"
+              Effect: Allow
+              Principal:
+                AWS: "*"
+              Action:
+                - kms:Encrypt
+                - kms:Decrypt
+                - kms:ReEncrypt
+                - kms:GenerateDataKey
+                - kms:DescribeKey
+              Resource: "*"
+              Condition:
+                StringEquals:
+                  "kms:CallerAccount": { Ref: "AWS::AccountId" }
+                  "kms:ViaService": { "Fn::Join" : ["", [ "ssm.", { Ref: "AWS::Region" }, ".amazonaws.com" ]]}

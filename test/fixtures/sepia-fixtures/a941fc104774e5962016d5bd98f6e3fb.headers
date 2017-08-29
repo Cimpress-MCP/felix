@@ -1,0 +1,32 @@
+{
+  "statusCode": 404,
+  "headers": {
+    "connection": "keep-alive",
+    "server": "nginx",
+    "date": "Thu, 13 Jul 2017 12:29:13 GMT",
+    "content-type": "application/json",
+    "content-length": "152",
+    "access-control-allow-origin": "*",
+    "access-control-allow-credentials": "true",
+    "access-control-expose-headers": "Content-Type, Cache-Control, Expires, Etag, Last-Modified",
+    "strict-transport-security": "max-age=31536000",
+    "x-oauth-scopes": "public,private",
+    "vary": "Accept-Encoding",
+    "cache-control": "private",
+    "x-rack-cache": "miss",
+    "x-request-id": "bea59967-a44e-474d-843c-bf109b8ae3f2",
+    "via": "1.1 vegur"
+  },
+  "url": "http://api.travis-ci.org:443/repo/maclennann%2Flol-not-real/env_vars",
+  "time": 97,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "Content-Type": "application/json",
+      "Travis-API-Version": "3",
+      "Authorization": "token REDACTED",
+      "host": "api.travis-ci.org",
+      "accept": "application/json"
+    }
+  }
+}

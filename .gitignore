@@ -1,0 +1,7 @@
+node_modules/
+.env
+reports/
+npm-debug.log
+.serverless/
+.DS_Store
+coverage/

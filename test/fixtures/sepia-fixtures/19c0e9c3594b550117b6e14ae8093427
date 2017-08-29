@@ -1,0 +1,13 @@
+{
+  "@type": "env_var",
+  "@href": "/repo/4242246/env_var/c9114be0-951c-45d1-b859-2675c5d9efe6",
+  "@representation": "standard",
+  "@permissions": {
+    "read": true,
+    "write": true
+  },
+  "id": "c9114be0-951c-45d1-b859-2675c5d9efe6",
+  "name": "AWS_ACCESS_KEY_ID",
+  "value": "AKIAlolololololol",
+  "public": true
+}

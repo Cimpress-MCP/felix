@@ -1,0 +1,32 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "connection": "keep-alive",
+    "server": "nginx",
+    "date": "Thu, 13 Jul 2017 12:29:15 GMT",
+    "content-type": "application/json",
+    "content-length": "1222",
+    "access-control-allow-origin": "*",
+    "access-control-allow-credentials": "true",
+    "access-control-expose-headers": "Content-Type, Cache-Control, Expires, Etag, Last-Modified",
+    "strict-transport-security": "max-age=31536000",
+    "x-oauth-scopes": "public,private",
+    "vary": "Accept-Encoding",
+    "cache-control": "private",
+    "x-rack-cache": "miss",
+    "x-request-id": "3a102626-0215-4dcb-b3b4-3a78d9e4efa1",
+    "via": "1.1 vegur"
+  },
+  "url": "https://api.travis-ci.org:443/repo/maclennann%2Frake-terraform/env_vars",
+  "time": 89,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "Content-Type": "application/json",
+      "Travis-API-Version": "3",
+      "Authorization": "token REDACTED",
+      "host": "api.travis-ci.org",
+      "accept": "application/json"
+    }
+  }
+}

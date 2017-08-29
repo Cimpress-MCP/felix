@@ -1,0 +1,13 @@
+{
+  "@type": "env_var",
+  "@href": "/repo/4242246/env_var/06105660-ce57-416a-8278-d7bfd4fa70a1",
+  "@representation": "standard",
+  "@permissions": {
+    "read": true,
+    "write": true
+  },
+  "id": "06105660-ce57-416a-8278-d7bfd4fa70a1",
+  "name": "A_NEW_VARIABLE_TWO",
+  "value": "this is a variable",
+  "public": true
+}

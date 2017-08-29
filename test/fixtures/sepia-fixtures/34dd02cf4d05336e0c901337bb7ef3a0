@@ -1,0 +1,12 @@
+{
+  "@type": "env_var",
+  "@href": "/repo/4242246/env_var/880dfc38-9fe4-4d53-919b-44771afc5a0d",
+  "@representation": "standard",
+  "@permissions": {
+    "read": true,
+    "write": true
+  },
+  "id": "880dfc38-9fe4-4d53-919b-44771afc5a0d",
+  "name": "AWS_SECRET_ACCESS_KEY",
+  "public": false
+}

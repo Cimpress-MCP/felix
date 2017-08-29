@@ -1,0 +1,6 @@
+{
+  "status" : 404,
+  "id" : "NPDQF-M6KXD-6W72Z",
+  "code" : "collectors.source.invalid",
+  "message" : "The specified source ID is invalid."
+}

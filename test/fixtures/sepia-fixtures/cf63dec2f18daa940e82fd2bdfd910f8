@@ -1,0 +1,45 @@
+{
+  "@type": "env_vars",
+  "@href": "/repo/maclennann%2Frake-terraform/env_vars",
+  "@representation": "standard",
+  "env_vars": [
+    {
+      "@type": "env_var",
+      "@href": "/repo/4242246/env_var/880dfc38-9fe4-4d53-919b-44771afc5a0d",
+      "@representation": "standard",
+      "@permissions": {
+        "read": true,
+        "write": true
+      },
+      "id": "880dfc38-9fe4-4d53-919b-44771afc5a0d",
+      "name": "AWS_SECRET_ACCESS_KEY",
+      "public": false
+    },
+    {
+      "@type": "env_var",
+      "@href": "/repo/4242246/env_var/b74bfcfd-bb30-4c31-81e0-36414f5b925e",
+      "@representation": "standard",
+      "@permissions": {
+        "read": true,
+        "write": true
+      },
+      "id": "b74bfcfd-bb30-4c31-81e0-36414f5b925e",
+      "name": "A_NEW_VARIABLE",
+      "value": "a variable value",
+      "public": true
+    },
+    {
+      "@type": "env_var",
+      "@href": "/repo/4242246/env_var/c9114be0-951c-45d1-b859-2675c5d9efe6",
+      "@representation": "standard",
+      "@permissions": {
+        "read": true,
+        "write": true
+      },
+      "id": "c9114be0-951c-45d1-b859-2675c5d9efe6",
+      "name": "AWS_ACCESS_KEY_ID",
+      "value": "AKIAlolololololol",
+      "public": true
+    }
+  ]
+}

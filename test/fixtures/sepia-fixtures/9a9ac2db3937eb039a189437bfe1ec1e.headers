@@ -1,0 +1,32 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "connection": "keep-alive",
+    "server": "nginx",
+    "date": "Thu, 13 Jul 2017 12:29:14 GMT",
+    "content-type": "application/json",
+    "content-length": "293",
+    "access-control-allow-origin": "*",
+    "access-control-allow-credentials": "true",
+    "access-control-expose-headers": "Content-Type, Cache-Control, Expires, Etag, Last-Modified",
+    "strict-transport-security": "max-age=31536000",
+    "x-oauth-scopes": "public,private",
+    "vary": "Accept-Encoding",
+    "x-rack-cache": "invalidate, pass",
+    "x-request-id": "dea48db5-bf2b-4bc6-9948-d3d54f33bbfb",
+    "via": "1.1 vegur"
+  },
+  "url": "https://api.travis-ci.org:443/repo/maclennann%2Frake-terraform/env_var/880dfc38-9fe4-4d53-919b-44771afc5a0d",
+  "time": 100,
+  "request": {
+    "method": "PATCH",
+    "headers": {
+      "Content-Type": "application/json",
+      "Travis-API-Version": "3",
+      "Authorization": "token REDACTED",
+      "host": "api.travis-ci.org",
+      "accept": "application/json",
+      "content-length": 98
+    }
+  }
+}

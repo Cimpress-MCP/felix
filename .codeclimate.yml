@@ -1,0 +1,24 @@
+---
+engines:
+  csslint:
+    enabled: false
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  nodesecurity:
+    enabled: false # run locally until it supports package-locks
+ratings:
+  paths:
+  - "**.js"
+exclude_paths:
+- node_modules/
+- test/
+- ".serverless/"
+- reports/
+- ".git/"

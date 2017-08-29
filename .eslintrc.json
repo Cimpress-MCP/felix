@@ -1,0 +1,10 @@
+{
+    "extends": "standard",
+    "env": {
+      "mocha": true
+    },
+    "rules": {
+      "one-var": "off",
+      "semi": [2, "always"]
+    }
+}

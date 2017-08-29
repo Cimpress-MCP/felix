@@ -1,0 +1,24 @@
+{
+  "statusCode": 404,
+  "headers": {
+    "cache-control": "no-cache=\"set-cookie\"",
+    "content-type": "application/json; charset=ISO-8859-1",
+    "date": "Wed, 05 Jul 2017 12:49:45 GMT",
+    "set-cookie": [
+      "AWSELB=D9214D6508307E89860421CAE8AF3C4B5AD79788045657CFCB2CBDA5B26AB6365C4D4F4062AD57A987B21640E3D01E6E14B656DB3258B7DFB1DF8F5C9D8B3A10ED9DEE9258;PATH=/"
+    ],
+    "content-length": "143",
+    "connection": "keep-alive"
+  },
+  "url": "http://api.us2.sumologic.com:443/api/v1/collectors/102990815/sources/0",
+  "time": 275,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "Content-Type": "application/json",
+      "host": "api.us2.sumologic.com",
+      "authorization": "Basic redacted",
+      "accept": "application/json"
+    }
+  }
+}

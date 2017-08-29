@@ -1,0 +1,28 @@
+{
+  "plugins": {
+    "aws": {
+      "awsParam": {
+        "path": "/felix/aws",
+        "decryption": true
+      }
+    },
+    "gitlab": {
+      "awsParam": {
+        "path": "/felix/gitlab",
+        "decryption": true
+      }
+    },
+    "sumologic": {
+      "awsParam": {
+        "path": "/felix/sumologic",
+        "decryption": true
+      }
+    },
+    "travis": {
+      "awsParam": {
+        "path": "/felix/travis",
+        "decryption": true
+      }
+    }
+  }
+}

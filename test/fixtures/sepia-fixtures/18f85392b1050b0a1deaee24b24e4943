@@ -1,0 +1,13 @@
+{
+  "@type": "env_var",
+  "@href": "/repo/4242246/env_var/b74bfcfd-bb30-4c31-81e0-36414f5b925e",
+  "@representation": "standard",
+  "@permissions": {
+    "read": true,
+    "write": true
+  },
+  "id": "b74bfcfd-bb30-4c31-81e0-36414f5b925e",
+  "name": "A_NEW_VARIABLE",
+  "value": "a variable value",
+  "public": true
+}
