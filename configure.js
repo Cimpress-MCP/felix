@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const {SSM} = require('aws-sdk'),
   ssm = new SSM(),
   readline = require('readline-sync'),
@@ -108,19 +110,24 @@ Description: ${plugin.Description}`);
       console.log(`  Parameter: ${pathPrefix}${plugin.Name}/${param.Name}
   Description: ${param.Description}`);
 
-      let existingValue;
-      if (plugin.Name in existingValues && param.Name in existingValues[plugin.Name]) {
+      let existingValue = '';
+      if (existingValues && plugin.Name in existingValues && param.Name in existingValues[plugin.Name]) {
         existingValue = existingValues[plugin.Name][param.Name];
       }
 
       const newValue = readline.question(`  Value (${existingValue}): `, {defaultInput: existingValue});
-      console.log(`    ${pathPrefix}${plugin.Name}/${param.Name} => ${newValue}`);
 
       param.Name = `${pathPrefix}${plugin.Name}/${param.Name}`;
       param.Value = newValue;
       param.Overwrite = true;
 
-      corrections.push(param);
+      if (newValue === '' || newValue === undefined) {
+        console.log(`    Refusing to update empty setting ${pathPrefix}${plugin.Name}/${param.Name}.`);
+      } else {
+        console.log(`    ${pathPrefix}${plugin.Name}/${param.Name} => ${newValue}`);
+        corrections.push(param);
+      }
+
       console.log('');
     });
     console.log('');

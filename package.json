@@ -5,7 +5,7 @@
   "main": "handler.js",
   "dependencies": {
     "@cimpresscloud/metafig": "^0.2.2",
-    "aws-sdk": "^2.106.0",
+    "aws-sdk": "^2.107.0",
     "request": "^2.81.0",
     "request-promise": "^4.2.1"
   },
