@@ -23,6 +23,12 @@
         "path": "/felix/travis",
         "decryption": true
       }
+    },
+    "jenkins": {
+      "awsParam": {
+        "path": "/felix/jenkins",
+        "decryption": true
+      }
     }
   }
 }

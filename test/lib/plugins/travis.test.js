@@ -5,11 +5,11 @@
 //       These should be re-written to be proper unit tests instead of integration
 //       tests where the web requests are stubbed.
 
-const sepia = require('sepia'),
+const replayer = require('replayer'),
   path = require('path');
 
-sepia.fixtureDir(path.join(process.cwd(), 'test/fixtures/sepia-fixtures'));
-sepia.configure({
+replayer.fixtureDir(path.join(process.cwd(), 'test/fixtures/sepia-fixtures'));
+replayer.configure({
   includeHeaderNames: false,
   includeCookieNames: false
 });

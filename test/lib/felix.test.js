@@ -98,11 +98,11 @@ describe('felix', () => {
   describe('#parseMetadata', () => {
     it('should parse service and metadata from a user', () => {
       let result = felix.parseMetadata({
-        Path: '/service/gitlab/cloud/', UserName: 'felix@gitlab'
+        Path: '/gitlab/cloud/', UserName: 'felix@gitlab'
       });
 
-      result.service.should.eql('gitlab');
-      result.metadata.should.eql('/service/gitlab/cloud/felix');
+      result.service.should.eql('cloud');
+      result.metadata.should.eql('/gitlab/cloud/felix@gitlab');
     });
   });
 });

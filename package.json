@@ -6,8 +6,11 @@
   "dependencies": {
     "@cimpresscloud/metafig": "^0.2.2",
     "aws-sdk": "^2.107.0",
+    "mockery": "^2.1.0",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.1",
+    "xml2js": "^0.4.19",
+    "xmlbuilder": "^9.0.4"
   },
   "devDependencies": {
     "depcheck": "^0.6.7",
@@ -22,7 +25,7 @@
     "nsp": "^2.7.0",
     "proxyquire": "^1.8.0",
     "readline-sync": "^1.4.7",
-    "sepia": "^2.0.2",
+    "replayer": "^2.1.3",
     "serverless": "^1.21.0",
     "serverless-plugin-common-excludes": "^1.0.3",
     "should": "^12.0.0",

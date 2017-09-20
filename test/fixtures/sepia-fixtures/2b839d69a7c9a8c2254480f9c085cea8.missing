@@ -1,0 +1,9 @@
+{
+  "url": "https://examplejenkins.fake:443/fakefakefakefakefakefakefakefake/config.xml",
+  "method": "GET",
+  "headers": {
+    "Content-Type": "application/xml",
+    "host": "examplejenkins.fake"
+  },
+  "body": ""
+}
