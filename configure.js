@@ -105,6 +105,7 @@ let config = [
       {
         Name:'APIKey',
         Description:'The API key used to authenticate with Jenkins.',
+        KeyId: 'alias/felix/settings',
         Type:'SecureString'
       }
     ]
