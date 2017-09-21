@@ -1,0 +1,19 @@
+{
+  "error": {
+    "code": "ENOTFOUND",
+    "errno": "ENOTFOUND",
+    "syscall": "getaddrinfo",
+    "hostname": "examplejenkins.fake",
+    "host": "examplejenkins.fake",
+    "port": 443
+  },
+  "url": "http://examplejenkins.fake:443/fakefakefakefakefakefakefakefake/config.xml",
+  "time": 16,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "Content-Type": "application/xml",
+      "host": "examplejenkins.fake"
+    }
+  }
+}

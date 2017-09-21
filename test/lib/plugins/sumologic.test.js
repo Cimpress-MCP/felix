@@ -1,10 +1,10 @@
 'use strict';
 
-const sepia = require('sepia'),
+const replayer = require('replayer'),
   path = require('path');
 
-sepia.fixtureDir(path.join(process.cwd(), 'test/fixtures/sepia-fixtures'));
-sepia.configure({
+replayer.fixtureDir(path.join(process.cwd(), 'test/fixtures/sepia-fixtures'));
+replayer.configure({
   includeHeaderNames: false,
   includeCookieNames: false
 });

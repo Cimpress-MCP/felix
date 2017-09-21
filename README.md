@@ -98,6 +98,12 @@ See the default config in `config.json`:
         "path": "/felix/travis",
         "decryption": true
       }
+    },
+    "jenkins": {
+      "awsParam": {
+        "path": "/felix/jenkins",
+        "decryption": true
+      }
     }
   }
 }
@@ -136,3 +142,12 @@ By default, all SumoLogic settings are loaded from the SSM Parameter Store at `/
 By default, all SumoLogic settings are loaded from the SSM Parameter Store at `/felix/travis`. It needs the following settings:
 
 * `token`: A TravisCI API Key. You can see [the Travis docs](https://developer.travis-ci.org/authentication) for information on generating this.
+
+#### Jenkins Settings
+
+By default, all Jenkins settings are loaded from the SSM Parameter Store at `/felix/Jenkins`. It needs the following settings:
+
+* `baseUrl`: The url used to reach the Jenkins credential API.
+* `credentialId`: The ID of the credential that Jenkins stores the AWS keys under.
+* `userName`: The username used to authenticate with Jenkins.
+* `APIKey`: The API key used to authenticate with Jenkins.

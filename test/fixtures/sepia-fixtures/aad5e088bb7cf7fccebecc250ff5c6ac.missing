@@ -1,0 +1,9 @@
+{
+  "url": "https://fakefakefakefakefakefakefakefake:443/config.xml",
+  "method": "GET",
+  "headers": {
+    "Content-Type": "application/xml",
+    "host": "fakefakefakefakefakefakefakefake"
+  },
+  "body": ""
+}

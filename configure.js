@@ -81,6 +81,34 @@ let config = [
         Type: 'SecureString'
       }
     ]
+  },
+  {
+    Name: 'jenkins',
+    Description: 'Jenkins Open Source Automation Server.',
+    required: false,
+    parameters: [
+      {
+        Name:'baseUrl',
+        Description: 'Url of the Jenkins master. Do not include authentication or protocol.',
+        Type: 'String'
+      },
+      {
+        Name:'credentialId',
+        Description:'The id for the credential Jenkins\' stores the AWS keys under.',
+        Type:'String'
+      },
+      {
+        Name:'userName',
+        Description:'The username used to authenticate with Jenkins.',
+        Type:'String'
+      },
+      {
+        Name:'APIKey',
+        Description:'The API key used to authenticate with Jenkins.',
+        KeyId: 'alias/felix/settings',
+        Type:'SecureString'
+      }
+    ]
   }
 ];
 
