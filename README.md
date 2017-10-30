@@ -1,3 +1,10 @@
+[![Build Status](https://travis-ci.org/Cimpress-MCP/felix.svg?branch=master)](https://travis-ci.org/Cimpress-MCP/felix)
+[![Code Climate](https://codeclimate.com/github/Cimpress-MCP/felix/badges/gpa.svg)](https://codeclimate.com/github/Cimpress-MCP/felix)
+[![Test Coverage](https://codeclimate.com/github/Cimpress-MCP/felix/badges/coverage.svg)](https://codeclimate.com/github/Cimpress-MCP/felix/coverage)
+
+[![dependencies Status](https://david-dm.org/Cimpress-MCP/felix/status.svg)](https://david-dm.org/Cimpress-MCP/felix)
+[![devDependencies Status](https://david-dm.org/Cimpress-MCP/felix/dev-status.svg)](https://david-dm.org/Cimpress-MCP/felix?type=dev)
+
 ## Felix
 
 ![Felix Logo](./logo.png)
