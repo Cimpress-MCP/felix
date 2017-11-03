@@ -1,10 +1,16 @@
 #!/usr/bin/env node
 
-const {SSM} = require('aws-sdk'),
-  ssm = new SSM(),
+const AWS = require('aws-sdk'),
   readline = require('readline-sync'),
   pathPrefix = '/felix/',
   {ssmToObjByPath} = require('ssm-params');
+
+if (!AWS.config.region) {
+  const region = readline.question(`Please specify which region to set these parameters in (us-east-1): `, {defaultInput: 'us-east-1'});
+  AWS.config.update({region});
+}
+
+const ssm = new AWS.SSM();
 
 let config = [
   {
@@ -14,6 +20,7 @@ let config = [
     parameters: [
       {
         Name: 'snsTopic',
+        default: `arn:aws:sns:${AWS.config.region}:[account id]:FelixReports`,
         Description: 'The SNS topic to publish Felix reports.',
         Type: 'String'
       },
@@ -113,6 +120,8 @@ Description: ${plugin.Description}`);
       let existingValue = '';
       if (existingValues && plugin.Name in existingValues && param.Name in existingValues[plugin.Name]) {
         existingValue = existingValues[plugin.Name][param.Name];
+      } else if ('default' in param) {
+        existingValue = param.default;
       }
 
       const newValue = readline.question(`  Value (${existingValue}): `, {defaultInput: existingValue});
@@ -122,9 +131,9 @@ Description: ${plugin.Description}`);
       param.Overwrite = true;
 
       if (newValue === '' || newValue === undefined) {
-        console.log(`    Refusing to update empty setting ${pathPrefix}${plugin.Name}/${param.Name}.`);
+        console.log(`    Refusing to update empty setting ${pathPrefix}${plugin.Name}${param.Name}.`);
       } else {
-        console.log(`    ${pathPrefix}${plugin.Name}/${param.Name} => ${newValue}`);
+        console.log(`    ${pathPrefix}${plugin.Name}${param.Name} => ${newValue}`);
         corrections.push(param);
       }
 
