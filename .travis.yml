@@ -1,7 +1,5 @@
 language: node_js
 node_js:
-  - "8"
-  - "7"
   - "6"
 
 env:
@@ -14,7 +12,7 @@ script:
 jobs:
   include:
     - stage: test coverage
-      node_js: "7"
+      node_js: "6"
       before_script:
         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
         - chmod +x ./cc-test-reporter
