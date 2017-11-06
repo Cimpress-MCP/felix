@@ -67,7 +67,7 @@ functions:
     handler: handler.rotate
     timeout: 30
     events:
-      - schedule: cron(0 8 */2 * ? *)
+      - schedule: cron(0 8 1 * ? *)
 
 resources:
   Resources:

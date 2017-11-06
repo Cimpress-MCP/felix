@@ -25,41 +25,21 @@ services like SumoLogic and GitLab. It aims to be easily extensible by both
 built-in providers and external plugins.
 
 ## Configuration and Deployment
-
-This is a serverless project. You'll need `sls` installed to deploy this
-package. `npm install -g serverless`.
-
 ### Deploying from source
 
 * Clone this repository (or `sls install`).
+* `npm install`
 * Get some IAM or STS keys for your account
 * `sls deploy --region [the region you want]`
-
-#### Deployed resources
-
-In additional to the usual Serverless resources (like the deployment bucket,
-etc), deploying felix also creates:
-
-* A KMS key with the alias `alias/felix/settings`.
-    * Used to encrypt secret SSM Parameters, like API keys.
-* An SNS topic called FelixReports.
-    * Used for delivery of Felix rotation reports.
-
-The Lambda execution role gets access to:
-
-* Manage Access Keys for IAM users with the path prefix `/service/`.
-* Get SSM parameters with the path prefix `/felix/`.
-* Decrypt things with the KMS key `alias/felix/settings`.
-* Public to the `FelixReports` SNS topic.
-
-All of this is controlled in `serverless.yml` as usual, so see that file
-for more information.
+* `npm run configure` to perform some first-time config in the Parameter Store.
 
 ### Configuring
 #### Quickstart with `configure.js`
 
 There is a [`configure.js`](./configure.js) script at the root of this
 repository that will configure all necessary configuration settings in SSM.
+
+You can run it with `npm run configure` or `node ./configure.js`.
 
 **NOTE**: Make sure you have your proper account, profile, and region set in
 your AWS config before running this.
@@ -70,47 +50,16 @@ use).
 
 #### Configuration details
 
-Configuration for **Felix** plugins are performed by
+Configuration for **Felix** plugins is generally performed by
 [metafig](https://github.com/Cimpress-MCP/metafig).
 
 Since most plugins will need some kind of secret value, this makes
 it easy to configure your plugins without any danger of accidentally
 hardcoding or committing secret values.
 
-See the default config in `config.json`:
+See the default config in [`config.json`](config.json).
 
-```json
-{
-  "plugins": {
-    "aws": {
-      "awsParam": {
-        "path": "/felix/aws",
-        "decryption": true
-      }
-    },
-    "gitlab": {
-      "awsParam": {
-        "path": "/felix/gitlab",
-        "decryption": true
-      }
-    },
-    "sumologic": {
-      "awsParam": {
-        "path": "/felix/sumologic",
-        "decryption": true
-      }
-    },
-    "travis": {
-      "awsParam": {
-        "path": "/felix/travis",
-        "decryption": true
-      }
-    }
-  }
-}
-```
-
-Everything under `plugins` is run through `metafig`. In this case, all of
+By default, everything under `plugins` is run through [`metafig`](https://github.com/Cimpress-MCP/metafig). In this case, all of
 the configuration for the `gitlab` plugin is pulled from the AWS Parameter
 Store, using the `/felix/gitlab` path. All of those values are populated
 into your configuration object and passed to the plugin when it is
@@ -127,7 +76,7 @@ By default, all AWS settings are loaded from the SSM Parameter Store at `/feilx/
 
 By default, all GitLab settings are loaded from the SSM Parameter Store at `/felix/gitlab`. It needs the following settings:
 
-* `token`: A GitLab API token that has access to update build variables for your repositories.
+* `token`: A [GitLab API token](https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html) that has access to update build variables for your repositories.
 * `url`: The BaseUrl to the GitLab instance you wish to connect to (e.g. `https://gitlab.mycompany.com/`).
 
 #### SumoLogic Settings
@@ -143,3 +92,32 @@ By default, all SumoLogic settings are loaded from the SSM Parameter Store at `/
 By default, all SumoLogic settings are loaded from the SSM Parameter Store at `/felix/travis`. It needs the following settings:
 
 * `token`: A TravisCI API Key. You can see [the Travis docs](https://developer.travis-ci.org/authentication) for information on generating this.
+
+## IAM User Configuration
+
+**Felix** uses IAM usernames and paths to intuit basic information about what
+the user is used for and where the keys are stored.
+
+As an example, `/service/travis/Cimpress-MCP/felix@travis` describes the IAM
+user used for this project.
+
+**Felix** tries to manage *all* users under `/service/`. The next piece of the path (in this case, `/travis/`) tells Felix about the desired plugin it should
+use to manage this user. In this case, the `travis` plugin. When the user's
+information is passed to the plugin, it uses the rest of the information to
+figure out how to address that user's credentials in the service. In this case,
+it uses the Travis API to manage environment variables in the
+`Cimpress-MCP/Felix` repository.
+
+The `@travis` at the end of the username is discarded by Felix and used only to
+avoid IAM username colissions in case you, for example, also used sumologic
+with your application and needed to manage an S3 hosted collector.
+
+The cool thing about this is that **Felix** can manage all of your keys and
+users without you needing to write and maintain a complex configuration file.
+Your users *are* your source of truth.
+
+### IAM User Path Construction
+* GitLab: `/service/gitlab/[group]/[project]@gitlab`
+  * Note: subgroups do not work at this time.
+* Sumo: `/service/sumo/[collector]/[source]@sumo`
+* Travis: `/service/travis/[org]/[repo]@travis`

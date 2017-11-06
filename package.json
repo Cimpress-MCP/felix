@@ -5,7 +5,7 @@
   "main": "handler.js",
   "dependencies": {
     "@cimpresscloud/metafig": "^0.2.3",
-    "aws-sdk": "^2.141.0",
+    "aws-sdk": "^2.145.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2"
   },
@@ -33,6 +33,7 @@
     "local": "sls invoke local -f rotate",
     "remote": "sls invoke -f rotate -l",
     "deploy": "sls deploy",
+    "configure": "node ./configure.js",
     "lint": "eslint . --fix",
     "depcheck": "depcheck --ignores serverless-plugin* && npm outdated && npm outdated -D && nsp check",
     "climate": "docker run -it --rm -e CODECLIMATE_CODE=\"$PWD\" -v \"$PWD\":/code -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/cc:/tmp/cc codeclimate/codeclimate analyze",
