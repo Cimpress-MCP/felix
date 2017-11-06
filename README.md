@@ -79,9 +79,6 @@ By default, all GitLab settings are loaded from the SSM Parameter Store at `/fel
 * `token`: A [GitLab API token](https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html) that has access to update build variables for your repositories.
 * `url`: The BaseUrl to the GitLab instance you wish to connect to (e.g. `https://gitlab.mycompany.com/`).
 
-##### IAM User Path
-IAM users intended to be managed by the GitLab plugin shou
-
 #### SumoLogic Settings
 
 By default, all SumoLogic settings are loaded from the SSM Parameter Store at `/felix/sumologic`. It needs the following settings:
