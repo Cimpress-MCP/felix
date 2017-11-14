@@ -5,9 +5,12 @@
   "main": "handler.js",
   "dependencies": {
     "@cimpresscloud/metafig": "^0.2.3",
-    "aws-sdk": "^2.145.0",
+    "aws-sdk": "^2.149.0",
+    "eslint": "^4.11.0",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "serverless": "^1.24.1",
+    "sinon": "^4.1.2"
   },
   "devDependencies": {
     "depcheck": "^0.6.8",
@@ -19,7 +22,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "istanbul": "^0.4.0",
     "mocha": "^4.0.0",
-    "nsp": "^2.8.1",
+    "nsp": "^3.1.0",
     "proxyquire": "^1.8.0",
     "readline-sync": "^1.4.7",
     "sepia": "^2.0.2",
