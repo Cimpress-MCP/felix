@@ -14,7 +14,7 @@ describe('Aws', () => {
 
   afterEach(() => {
     Object.keys(awsStub.spies).forEach(spy => {
-      awsStub.spies[spy].reset();
+      awsStub.spies[spy].resetHistory();
     });
   });
 
