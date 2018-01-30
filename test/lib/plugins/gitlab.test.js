@@ -13,7 +13,7 @@ describe('GitLab', () => {
   });
 
   afterEach(() => {
-    rpStub.spy.reset();
+    rpStub.spy.resetHistory();
   });
 
   describe('#getProject', () => {
