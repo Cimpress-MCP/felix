@@ -78,6 +78,7 @@ By default, all GitLab settings are loaded from the SSM Parameter Store at `/fel
 
 * `token`: A [GitLab API token](https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html) that has access to update build variables for your repositories.
 * `url`: The BaseUrl to the GitLab instance you wish to connect to (e.g. `https://gitlab.mycompany.com/`).
+* `protectedKeys`: A boolean value determining if Felix should mark the build variables containing the keys as protected.
 
 #### SumoLogic Settings
 
