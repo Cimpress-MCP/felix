@@ -5,11 +5,12 @@ const proxyquire = require('proxyquire'),
 require('should');
 
 describe('GitLab', () => {
-  let gitlab;
+  let gitlab, gitlabWithUnprotectedKeys;
 
   before(() => {
     const GitLab = proxyquire('../../../lib/plugins/gitlab', { 'request-promise': rpStub });
-    gitlab = new GitLab({url: 'https://gitlab.localhost', token: '12345'});
+    gitlab = new GitLab({url: 'https://gitlab.localhost', token: '12345', protectedKeys: 'True'});
+    gitlabWithUnprotectedKeys = new GitLab({url: 'https://gitlab.localhost', token: '12345', protectedKeys: 'False'});
   });
 
   afterEach(() => {
@@ -46,9 +47,26 @@ describe('GitLab', () => {
           requestOne[0].method.should.eql('POST');
           requestOne[0].uri.should.eql('/api/v4/projects/3/variables');
           requestOne[0].body.key.should.eql('AWS_ACCESS_KEY_ID');
+          requestOne[0].body.protected.should.eql(true);
           requestTwo[0].method.should.eql('POST');
           requestTwo[0].uri.should.eql('/api/v4/projects/3/variables');
           requestTwo[0].body.key.should.eql('AWS_SECRET_ACCESS_KEY');
+          requestTwo[0].body.protected.should.eql(true);
+        });
+    });
+    it('should POST key id and key with protected flag set to false', () => {
+      return gitlabWithUnprotectedKeys.createKey(4, {AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample'})
+        .then(() => {
+          rpStub.spy.callCount.should.eql(2);
+          const [requestOne, requestTwo] = rpStub.spy.args;
+          requestOne[0].method.should.eql('POST');
+          requestOne[0].uri.should.eql('/api/v4/projects/4/variables');
+          requestOne[0].body.key.should.eql('AWS_ACCESS_KEY_ID');
+          requestOne[0].body.protected.should.eql(false);
+          requestTwo[0].method.should.eql('POST');
+          requestTwo[0].uri.should.eql('/api/v4/projects/4/variables');
+          requestTwo[0].body.key.should.eql('AWS_SECRET_ACCESS_KEY');
+          requestTwo[0].body.protected.should.eql(false);
         });
     });
   });
@@ -62,8 +80,26 @@ describe('GitLab', () => {
           requestOne[0].method.should.eql('PUT');
           requestOne[0].body.key.should.eql('AWS_ACCESS_KEY_ID');
           requestOne[0].uri.should.eql('/api/v4/projects/3/variables/AWS_ACCESS_KEY_ID');
+          requestOne[0].body.protected.should.eql(true);
           requestTwo[0].method.should.eql('PUT');
           requestTwo[0].body.key.should.eql('AWS_SECRET_ACCESS_KEY');
+          requestTwo[0].uri.should.eql('/api/v4/projects/3/variables/AWS_SECRET_ACCESS_KEY');
+          requestTwo[0].body.protected.should.eql(true);
+        });
+    });
+    it('should PUT key id and key with the protected flag set to false', () => {
+      return gitlabWithUnprotectedKeys.updateKey(4, {AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample'})
+        .then(() => {
+          rpStub.spy.callCount.should.eql(2);
+          const [requestOne, requestTwo] = rpStub.spy.args;
+          requestOne[0].method.should.eql('PUT');
+          requestOne[0].body.key.should.eql('AWS_ACCESS_KEY_ID');
+          requestOne[0].uri.should.eql('/api/v4/projects/4/variables/AWS_ACCESS_KEY_ID');
+          requestOne[0].body.protected.should.eql(false);
+          requestTwo[0].method.should.eql('PUT');
+          requestTwo[0].body.key.should.eql('AWS_SECRET_ACCESS_KEY');
+          requestTwo[0].uri.should.eql('/api/v4/projects/4/variables/AWS_SECRET_ACCESS_KEY');
+          requestOne[0].body.protected.should.eql(false);
         });
     });
   });

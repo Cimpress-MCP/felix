@@ -48,6 +48,12 @@ let config = [
         Description: 'The GitLab API token for managing repository settings.',
         KeyId: 'alias/felix/settings',
         Type: 'SecureString'
+      },
+      {
+        Name: 'protectedKeys',
+        default: 'false',
+        Description: 'Should GitLab mark the keys as protected? Protected keys can only be used on protected branches. (true or false)',
+        Type: 'String'
       }
     ]
   },

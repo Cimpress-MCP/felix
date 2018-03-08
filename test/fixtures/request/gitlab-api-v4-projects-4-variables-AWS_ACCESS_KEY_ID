@@ -1,0 +1,5 @@
+{
+    "key": "AWS_ACCESS_KEY_ID",
+    "value": "updated value",
+    "protected": false
+}
