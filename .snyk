@@ -1,16 +1,18 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.10.1
+version: v1.10.2
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  'npm:crypto-browserify:20140722':
-    - aws-sdk > crypto-browserify:
-        reason: >-
-          crypto-browserify is only used in browser environments - native crypto
-          package used in node
-        expires: '2018-01-28T12:14:14.060Z'
-    - '@cimpresscloud/metafig > aws-sdk > crypto-browserify':
-        reason: >-
-          crypto-browseriy is only used in browser environments - native crypto
-          package used in node
-        expires: '2018-01-28T12:14:14.060Z'
+  'npm:hoek:20180212':
+    - request > hawk > hoek:
+        reason: 'https://github.com/request/request/issues/2874'
+        expires: '2018-04-29T12:34:55.100Z'
+    - request > hawk > boom > hoek:
+        reason: 'https://github.com/request/request/issues/2874'
+        expires: '2018-04-29T12:34:55.100Z'
+    - request > hawk > sntp > hoek:
+        reason: 'https://github.com/request/request/issues/2874'
+        expires: '2018-04-29T12:34:55.100Z'
+    - request > hawk > cryptiles > boom > hoek:
+        reason: 'https://github.com/request/request/issues/2874'
+        expires: '2018-04-29T12:34:55.100Z'
 patch: {}
