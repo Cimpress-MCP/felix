@@ -137,4 +137,19 @@ describe('GitLab', () => {
         });
     });
   });
+
+  describe('#parseMetadata', () => {
+    it('should return group and project', () => {
+      let {group, project} = gitlab.parseMetadata('/service/gitlab/group/project');
+
+      group.should.eql('group');
+      project.should.eql('project');
+    });
+
+    it('should support gitlab sub-groups', () => {
+      let {group, project} = gitlab.parseMetadata('/service/gitlab/a/very/deep/group/project');
+      group.should.eql('a/very/deep/group');
+      project.should.eql('project');
+    });
+  });
 });
