@@ -1,10 +1,13 @@
 language: node_js
 node_js:
-  - "6"
+  - "8"
 
 env:
   global:
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
+
+before_install:
+  - npm install -g npm
 
 script:
   - npm run preflight
