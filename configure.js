@@ -94,6 +94,37 @@ const config = [
         Type: 'SecureString'
       }
     ]
+  },
+  {
+    Name: 'commercetools',
+    Description: 'Commercetools settings for managing subscriptions.',
+    required: false,
+    parameters: [
+      {
+        Name: 'oauthHost',
+        Description: 'The Commercetools AUTH endpoint.',
+        default: 'https://auth.sphere.io',
+        Type: 'String'
+      },
+      {
+        Name: 'apiHost',
+        Description: 'The Commercetools API endpoint.',
+        default: 'https://api.sphere.io',
+        Type: 'String'
+      },
+      {
+        Name: 'clientId',
+        Description: 'The Commercetools Authentication client id',
+        KeyId: 'alias/felix/settings',
+        Type: 'SecureString'
+      },
+      {
+        Name: 'clientSecret',
+        Description: 'The Commercetools Authentication client secret',
+        KeyId: 'alias/felix/settings',
+        Type: 'SecureString'
+      }
+    ]
   }
 ];
 

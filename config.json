@@ -23,6 +23,12 @@
         "path": "/felix/travis",
         "decryption": true
       }
+    },
+    "commercetools": {
+      "awsParam": {
+        "path": "/felix/commercetools",
+        "decryption": true
+      }
     }
   }
 }
