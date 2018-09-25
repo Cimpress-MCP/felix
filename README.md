@@ -122,3 +122,4 @@ Your users *are* your source of truth.
   * Note: subgroups do not work at this time.
 * Sumo: `/service/sumo/[collector]/[source]@sumo`
 * Travis: `/service/travis/[org]/[repo]@travis`
+* Commercetools: `/service/commercetools/[project-key]/[subscription_key]@commercetools
