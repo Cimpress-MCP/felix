@@ -10,7 +10,7 @@
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
-    "depcheck": "^0.6.9",
+    "depcheck": "^0.7.1",
     "eslint": "^4.19.1",
     "eslint-config-standard": "~11.0.0",
     "eslint-plugin-import": "^2.12.0",
@@ -22,7 +22,7 @@
     "proxyquire": "^2.0",
     "readline-sync": "^1.4.9",
     "sepia": "^2.0.2",
-    "serverless": "^1.27.2",
+    "serverless": "^1.37.1",
     "serverless-plugin-common-excludes": "^2.0.1",
     "should": "^13.2.1",
     "sinon": "4.4.9",
