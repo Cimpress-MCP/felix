@@ -22,7 +22,7 @@
     "proxyquire": "^2.0",
     "readline-sync": "^1.4.9",
     "sepia": "^2.0.2",
-    "serverless": "^1.37.1",
+    "serverless": "^1.44.1",
     "serverless-plugin-common-excludes": "^2.0.1",
     "should": "^13.2.1",
     "sinon": "4.4.9",
