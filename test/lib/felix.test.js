@@ -20,7 +20,7 @@ describe('felix', () => {
     });
 
     it("should fail to load plugins that don't exist", () => {
-      return felix.loadPlugin('foobar', {plugins: {foobar: {}}})
+      return felix.loadPlugin('foobar', { plugins: { foobar: {} } })
         .then(plugin => {
           throw new Error("This shouldn't happen.");
         })
@@ -31,7 +31,7 @@ describe('felix', () => {
     });
 
     it('should successfully load existing plugins', () => {
-      return felix.loadPlugin('gitlab', {plugins: {gitlab: {}}})
+      return felix.loadPlugin('gitlab', { plugins: { gitlab: {} } })
         .then(plugin => {
           const GitLab = require('../../lib/plugins/gitlab');
           plugin.should.be.an.instanceOf(GitLab);
@@ -43,12 +43,16 @@ describe('felix', () => {
     it('should fail if there are multiple active keys', () => {
       try {
         felix.checkKeyState([
-          { AccessKeyId: 'AKIAEXAMPLE12345',
+          {
+            AccessKeyId: 'AKIAEXAMPLE12345',
             Status: 'Active',
-            SecretAccessKey: 'kljf234fuexample' },
-          { AccessKeyId: 'AKIAEXAMPLE98765',
+            SecretAccessKey: 'kljf234fuexample'
+          },
+          {
+            AccessKeyId: 'AKIAEXAMPLE98765',
             Status: 'Active',
-            SecretAccessKey: 'jkh4lj3example' }
+            SecretAccessKey: 'jkh4lj3example'
+          }
         ]);
       } catch (err) {
         err.should.be.an.Error();
@@ -61,9 +65,11 @@ describe('felix', () => {
 
     it('should return the key if there is a single active key', () => {
       const inputKeys = [
-        { AccessKeyId: 'AKIAEXAMPLE12345',
+        {
+          AccessKeyId: 'AKIAEXAMPLE12345',
           Status: 'Active',
-          SecretAccessKey: 'kljf234fuexample' }
+          SecretAccessKey: 'kljf234fuexample'
+        }
       ];
       const outputKeys = felix.checkKeyState(inputKeys);
       outputKeys.should.be.eql(inputKeys[0]);
@@ -71,12 +77,16 @@ describe('felix', () => {
 
     it('should disregard inactive keys', () => {
       const inputKeys = [
-        { AccessKeyId: 'AKIAEXAMPLE12345',
+        {
+          AccessKeyId: 'AKIAEXAMPLE12345',
           Status: 'Active',
-          SecretAccessKey: 'kljf234fuexample' },
-        { AccessKeyId: 'AKIAEXAMPLE98765',
+          SecretAccessKey: 'kljf234fuexample'
+        },
+        {
+          AccessKeyId: 'AKIAEXAMPLE98765',
           Status: 'Inactive',
-          SecretAccessKey: 'jkh4lj3example' }
+          SecretAccessKey: 'jkh4lj3example'
+        }
       ];
 
       const outputKeys = felix.checkKeyState(inputKeys);
@@ -85,9 +95,11 @@ describe('felix', () => {
 
     it('should be okay with no keys at all', () => {
       const inputKeys = [
-        { AccessKeyId: 'AKIAEXAMPLE98765',
+        {
+          AccessKeyId: 'AKIAEXAMPLE98765',
           Status: 'Inactive',
-          SecretAccessKey: 'jkh4lj3example' }
+          SecretAccessKey: 'jkh4lj3example'
+        }
       ];
 
       const outputKeys = felix.checkKeyState(inputKeys);
@@ -97,7 +109,7 @@ describe('felix', () => {
 
   describe('#parseMetadata', () => {
     it('should parse service and metadata from a user', () => {
-      let result = felix.parseMetadata({
+      const result = felix.parseMetadata({
         Path: '/service/gitlab/cloud/', UserName: 'felix@gitlab'
       });
 

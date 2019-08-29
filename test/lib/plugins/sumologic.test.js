@@ -26,9 +26,11 @@ describe('SumoLogic', function () {
       sumoSecretKey = process.env.SUMO_SECRET_KEY;
     }
 
-    sumologic = new SumoLogic({ url: 'https://api.us2.sumologic.com/api/v1',
+    sumologic = new SumoLogic({
+      url: 'https://api.us2.sumologic.com/api/v1',
       keyId: sumoKeyId,
-      secretKey: sumoSecretKey });
+      secretKey: sumoSecretKey
+    });
   });
 
   describe('#getCollector', () => {
