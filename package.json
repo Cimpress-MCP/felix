@@ -1,6 +1,6 @@
 {
   "name": "felix",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Automatically rotate IAM keys used by third-party services.",
   "main": "handler.js",
   "dependencies": {
