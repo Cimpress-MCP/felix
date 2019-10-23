@@ -29,7 +29,7 @@ describe('TravisCi', function () {
       travisKey = process.env.TRAVIS_KEY;
     }
 
-    travis = new Travis({token: travisKey});
+    travis = new Travis({ token: travisKey });
   });
 
   describe('#getVariables', () => {
@@ -116,7 +116,7 @@ describe('TravisCi', function () {
         SecretAccessKey: 'this is a secret'
       })
         .then(updates => {
-          let id = updates.filter(u => u.name === 'AWS_ACCESS_KEY_ID')[0],
+          const id = updates.filter(u => u.name === 'AWS_ACCESS_KEY_ID')[0],
             key = updates.filter(u => u.name === 'AWS_SECRET_ACCESS_KEY')[0];
 
           id.id.should.eql('c9114be0-951c-45d1-b859-2675c5d9efe6');

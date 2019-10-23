@@ -3,16 +3,16 @@
 const AWS = require('aws-sdk'),
   readline = require('readline-sync'),
   pathPrefix = '/felix/',
-  {ssmToObjByPath} = require('ssm-params');
+  { ssmToObjByPath } = require('ssm-params');
 
 if (!AWS.config.region) {
-  const region = readline.question(`Please specify which region to set these parameters in (us-east-1): `, {defaultInput: 'us-east-1'});
-  AWS.config.update({region});
+  const region = readline.question('Please specify which region to set these parameters in (us-east-1): ', { defaultInput: 'us-east-1' });
+  AWS.config.update({ region });
 }
 
 const ssm = new AWS.SSM();
 
-let config = [
+const config = [
   {
     Name: 'aws',
     Description: 'AWS-specific settings for locating IAM users and notifying SNS.',
@@ -140,7 +140,7 @@ have all of the correct parameters created in the right paths and the right ones
 are encrypted.
 `);
 
-  let corrections = [];
+  const corrections = [];
 
   config.forEach(plugin => {
     console.log(`Plugin: ${plugin.Name}
@@ -161,7 +161,7 @@ Description: ${plugin.Description}`);
         existingValue = param.default;
       }
 
-      const newValue = readline.question(`  Value (${existingValue}): `, {defaultInput: existingValue});
+      const newValue = readline.question(`  Value (${existingValue}): `, { defaultInput: existingValue });
 
       param.Name = `${pathPrefix}${plugin.Name}/${param.Name}`;
       param.Value = newValue;

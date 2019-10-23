@@ -29,11 +29,11 @@ function listUsers (params, callback) {
     users = users.filter(u => u.Path.startsWith(params.PathPrefix));
   }
 
-  callback(null, {Users: users});
+  callback(null, { Users: users });
 }
 
 function listAccessKeys (params, callback) {
-  if (!params.hasOwnProperty('UserName') || params.UserName === undefined) {
+  if (!Object.prototype.hasOwnProperty.call(params, 'UserName') || params.UserName === undefined) {
     return callback(new Error('Did not get a username!'));
   }
 
@@ -56,7 +56,7 @@ function listAccessKeys (params, callback) {
 }
 
 function createAccessKey (params, callback) {
-  if (!params.hasOwnProperty('UserName') || params.UserName === undefined) {
+  if (!Object.prototype.hasOwnProperty.call(params, 'UserName') || params.UserName === undefined) {
     return callback(new Error('Did not get a username!'));
   }
 
@@ -72,11 +72,11 @@ function createAccessKey (params, callback) {
 }
 
 function updateAccessKey (params, callback) {
-  if (!params.hasOwnProperty('UserName') ||
+  if (!Object.prototype.hasOwnProperty.call(params, 'UserName') ||
       params.UserName === undefined ||
-      !params.hasOwnProperty('AccessKeyId') ||
+      !Object.prototype.hasOwnProperty.call(params, 'AccessKeyId') ||
       params.AccessKeyId === undefined ||
-      !params.hasOwnProperty('Status') ||
+      !Object.prototype.hasOwnProperty.call(params, 'Status') ||
       params.Status !== 'Inactive') {
     return callback(new Error('There was a problem with the parameters'));
   }
