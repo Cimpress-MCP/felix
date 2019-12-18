@@ -15,12 +15,14 @@ frameworkVersion: ">=1.0.0 <2.0.0"
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs12.x
   stage: prd
   region: us-east-1
   custom:
     defaultAdmin: root
     kmsAdminName: ${env:AWS_KMS_ADMIN_ROLE, self:provider.custom.defaultAdmin}
+  iamManagedPolicies:
+    - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
   iamRoleStatements:
      - Effect: "Allow"
        Action:
