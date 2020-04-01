@@ -5,3 +5,4 @@ npm-debug.log
 .serverless/
 .DS_Store
 coverage/
+.vscode/
