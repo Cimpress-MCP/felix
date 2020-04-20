@@ -9,8 +9,8 @@ describe('GitLab', () => {
 
   before(() => {
     const GitLab = proxyquire('../../../lib/plugins/gitlab', { 'request-promise': rpStub });
-    gitlab = new GitLab({url: 'https://gitlab.localhost', token: '12345', protectedKeys: 'True'});
-    gitlabWithUnprotectedKeys = new GitLab({url: 'https://gitlab.localhost', token: '12345', protectedKeys: 'False'});
+    gitlab = new GitLab({ url: 'https://gitlab.localhost', token: '12345', protectedKeys: 'True' });
+    gitlabWithUnprotectedKeys = new GitLab({ url: 'https://gitlab.localhost', token: '12345', protectedKeys: 'False' });
   });
 
   afterEach(() => {
@@ -22,7 +22,7 @@ describe('GitLab', () => {
       return gitlab.getProject('a', 'b')
         .then(project => {
           project.id.should.eql(3);
-          rpStub.spy.args[0][0].should.eql({uri: '/api/v4/projects/a%2Fb'});
+          rpStub.spy.args[0][0].should.eql({ uri: '/api/v4/projects/a%2Fb' });
         });
     });
   });
@@ -32,7 +32,7 @@ describe('GitLab', () => {
       return gitlab.getVariables(3)
         .then(variables => {
           variables.length.should.eql(4);
-          rpStub.spy.args[0][0].should.eql({uri: '/api/v4/projects/3/variables'});
+          rpStub.spy.args[0][0].should.eql({ uri: '/api/v4/projects/3/variables' });
           variables[0].key.should.eql('TEST_VARIABLE_1');
         });
     });
@@ -40,7 +40,7 @@ describe('GitLab', () => {
 
   describe('#createKey', () => {
     it('should POST key id and key to build variables', () => {
-      return gitlab.createKey(3, {AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample'})
+      return gitlab.createKey(3, { AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample' })
         .then(() => {
           rpStub.spy.callCount.should.eql(2);
           const [requestOne, requestTwo] = rpStub.spy.args;
@@ -55,7 +55,7 @@ describe('GitLab', () => {
         });
     });
     it('should POST key id and key with protected flag set to false', () => {
-      return gitlabWithUnprotectedKeys.createKey(4, {AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample'})
+      return gitlabWithUnprotectedKeys.createKey(4, { AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample' })
         .then(() => {
           rpStub.spy.callCount.should.eql(2);
           const [requestOne, requestTwo] = rpStub.spy.args;
@@ -73,7 +73,7 @@ describe('GitLab', () => {
 
   describe('#updateKey', () => {
     it('should PUT key id and key to build variables', () => {
-      return gitlab.updateKey(3, {AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample'})
+      return gitlab.updateKey(3, { AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample' })
         .then(() => {
           rpStub.spy.callCount.should.eql(2);
           const [requestOne, requestTwo] = rpStub.spy.args;
@@ -88,7 +88,7 @@ describe('GitLab', () => {
         });
     });
     it('should PUT key id and key with the protected flag set to false', () => {
-      return gitlabWithUnprotectedKeys.updateKey(4, {AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample'})
+      return gitlabWithUnprotectedKeys.updateKey(4, { AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample' })
         .then(() => {
           rpStub.spy.callCount.should.eql(2);
           const [requestOne, requestTwo] = rpStub.spy.args;
@@ -106,7 +106,7 @@ describe('GitLab', () => {
 
   describe('#createOrUpdateKey', () => {
     it('should update key if it already exists', () => {
-      return gitlab.createOrUpdateKey('/service/gitlab/a/b', {AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample'})
+      return gitlab.createOrUpdateKey('/service/gitlab/a/b', { AccessKeyId: 'AKIALKWEJF3example', SecretAccessKey: 'lkeWEFJ98rexample' })
         .then(() => {
           rpStub.spy.callCount.should.eql(4);
           const [getProject, getVars, putId, putKey] = rpStub.spy.args;
@@ -140,14 +140,14 @@ describe('GitLab', () => {
 
   describe('#parseMetadata', () => {
     it('should return group and project', () => {
-      let {group, project} = gitlab.parseMetadata('/service/gitlab/group/project');
+      const { group, project } = gitlab.parseMetadata('/service/gitlab/group/project');
 
       group.should.eql('group');
       project.should.eql('project');
     });
 
     it('should support gitlab sub-groups', () => {
-      let {group, project} = gitlab.parseMetadata('/service/gitlab/a/very/deep/group/project');
+      const { group, project } = gitlab.parseMetadata('/service/gitlab/a/very/deep/group/project');
       group.should.eql('a/very/deep/group');
       project.should.eql('project');
     });

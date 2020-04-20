@@ -24,7 +24,7 @@ describe('Aws', () => {
         .then(users => {
           users.length.should.eql(2);
           users.filter(u => u.Path.startsWith('/service')).length.should.eql(users.length);
-          awsStub.spies.listUsers.args[0][0].should.eql({PathPrefix: '/service'});
+          awsStub.spies.listUsers.args[0][0].should.eql({ PathPrefix: '/service' });
           awsStub.spies.listUsers.callCount.should.eql(1);
         });
     });
@@ -34,7 +34,7 @@ describe('Aws', () => {
         .then(users => {
           users.length.should.eql(3);
           users.filter(u => u.Path.startsWith('/')).length.should.eql(users.length);
-          awsStub.spies.listUsers.args[0][0].should.eql({PathPrefix: '/'});
+          awsStub.spies.listUsers.args[0][0].should.eql({ PathPrefix: '/' });
           awsStub.spies.listUsers.callCount.should.eql(1);
         });
     });
@@ -57,7 +57,7 @@ describe('Aws', () => {
       return iam.generateKey('aUser')
         .then(key => {
           awsStub.spies.createAccessKey.callCount.should.eql(1);
-          awsStub.spies.createAccessKey.args[0][0].should.eql({UserName: 'aUser'});
+          awsStub.spies.createAccessKey.args[0][0].should.eql({ UserName: 'aUser' });
           key.UserName.should.eql('aUser');
         });
     });
@@ -111,7 +111,7 @@ describe('Aws', () => {
     });
 
     it('should call AWS to deactivate key', () => {
-      return iam.deactivateKey('aUser', {AccessKeyId: 'AKIAWELKFJ38example'})
+      return iam.deactivateKey('aUser', { AccessKeyId: 'AKIAWELKFJ38example' })
         .then(() => {
           awsStub.spies.updateAccessKey.callCount.should.eql(1);
           const params = awsStub.spies.updateAccessKey.args[0][0];
