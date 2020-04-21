@@ -6,7 +6,6 @@
   "dependencies": {
     "@cimpresscloud/metafig": "^0.2.7",
     "aws-sdk": "^2.519.0",
-    "handlebars": "^4.7.6",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   },
