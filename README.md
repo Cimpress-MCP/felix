@@ -34,7 +34,23 @@ So **Felix** is aimed at making it easy to manage IAM keys in third-party
 services like SumoLogic and GitLab. It aims to be easily extensible by both
 built-in providers and external plugins.
 
-## Architecture <a name = "architecture"><a/>
+## Architecture <a name = "architecture"></a>
+
+Architecture for this project is relatively simple.  There are only 4 main components that can be separated into two categories:
+
+### Category One: Infrastructure in YOUR AWS account
+
+1. The Lambda Function itself
+1. Systems Management Parameter Store parameters
+1. IAM users
+
+### Category Two: External Systems containing keys
+
+1. GitLab
+1. SumoLogic
+1. Travis-CI
+
+The felix Lambda function loads AWS Parameter Store (SSM) parameters that are appropriately named (see [Configuration](#configuration) section below), creates new access keys for IAM users that are appropriately pathed (see [IAM User Path Construction](#iam_user_path) section below), and using access provided by your SSM parameters, updates your configured external system (GitLab, SumoLogic, or Travis-CI).
 
 ![Felix Architecture](./readme-assets/felix-architecture.png)
 
@@ -48,7 +64,7 @@ built-in providers and external plugins.
 * `sls deploy --region [the region you want]`
 * `npm run configure` to perform some first-time config in the Parameter Store.
 
-### Configuring
+### Configuration <a name = "configuration"></a>
 
 #### Quickstart with `configure.js`
 
@@ -133,7 +149,8 @@ The cool thing about this is that **Felix** can manage all of your keys and
 users without you needing to write and maintain a complex configuration file.
 Your users *are* your source of truth.
 
-### IAM User Path Construction
+### IAM User Path Construction <a name = iam_user_path></a>
+
 * GitLab: `/service/gitlab/[group]/[project]@gitlab`
   * Note: subgroups do not work at this time.
 * Sumo: `/service/sumo/[collector]/[source]@sumo`
