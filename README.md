@@ -5,11 +5,21 @@
 [![dependencies Status](https://david-dm.org/Cimpress-MCP/felix/status.svg)](https://david-dm.org/Cimpress-MCP/felix)
 [![devDependencies Status](https://david-dm.org/Cimpress-MCP/felix/dev-status.svg)](https://david-dm.org/Cimpress-MCP/felix?type=dev)
 
-## Felix
+# Felix
 
 ![Felix Logo](./logo.png)
 
 **Felix** rotates your IAM keys!
+
+## Table of Contents
+
+- [About](#about)
+- [Architecture](#architecture)
+- [Configuration and Deployment](#config_and_deploy)
+- [IAM Configuration](#iam_config)
+- [Contributing](#contributing)
+
+## About <a name = "about"></a>
 
 Managing your IAM keys is a fundamental piece of AWS security. It's also one
 of the easiest things to get wrong. In fact, the easiest way to manage your
@@ -24,7 +34,12 @@ So **Felix** is aimed at making it easy to manage IAM keys in third-party
 services like SumoLogic and GitLab. It aims to be easily extensible by both
 built-in providers and external plugins.
 
-## Configuration and Deployment
+## Architecture <a name = "architecture"><a/>
+
+![Felix Architecture](./felix-architecture.png)
+
+## Deployment and Configuration <a name = "config_and_deploy"></a>
+
 ### Deploying from source
 
 * Clone this repository (or `sls install`).
@@ -34,6 +49,7 @@ built-in providers and external plugins.
 * `npm run configure` to perform some first-time config in the Parameter Store.
 
 ### Configuring
+
 #### Quickstart with `configure.js`
 
 There is a [`configure.js`](./configure.js) script at the root of this
@@ -67,7 +83,7 @@ instantiated.
 
 #### AWS Settings
 
-By default, all AWS settings are loaded from the SSM Parameter Store at `/feilx/aws`. It needs the following settings:
+By default, all AWS settings are loaded from the SSM Parameter Store at `/felix/aws`. It needs the following settings:
 
 * `userPath`: The IAM path from which to load all users. This should be `/service/` in order to match the default settings. The Lambda execution role only has access to `/service/` by default, so whatever you choose should be under there somewhere.
 * `snsTopic`: The ARN of the SNS topic to publish Felix reports to. This should be the SNS topic that was created by the Felix deployment.
@@ -94,7 +110,7 @@ By default, all SumoLogic settings are loaded from the SSM Parameter Store at `/
 
 * `token`: A TravisCI API Key. You can see [the Travis docs](https://developer.travis-ci.org/authentication) for information on generating this.
 
-## IAM User Configuration
+## IAM User Configuration <a name = "iam_config"></a>
 
 **Felix** uses IAM usernames and paths to intuit basic information about what
 the user is used for and where the keys are stored.
@@ -110,7 +126,7 @@ it uses the Travis API to manage environment variables in the
 `Cimpress-MCP/Felix` repository.
 
 The `@travis` at the end of the username is discarded by Felix and used only to
-avoid IAM username colissions in case you, for example, also used sumologic
+avoid IAM username collisions in case you, for example, also used sumologic
 with your application and needed to manage an S3 hosted collector.
 
 The cool thing about this is that **Felix** can manage all of your keys and
@@ -122,3 +138,14 @@ Your users *are* your source of truth.
   * Note: subgroups do not work at this time.
 * Sumo: `/service/sumo/[collector]/[source]@sumo`
 * Travis: `/service/travis/[org]/[repo]@travis`
+
+## 👩‍💻 Contributing <a name="contributing"></a>
+
+Contributions to this project are welcome.  If you'd like to lend a hand with this project and have a member of the Cimpress Open Source community review for inclusion just do a standard pull request:
+
+1. Clone this repo
+1. Make a branch for your work
+1. Do your stuff
+1. Push your branch!
+1. Open a Merge Request.
+1. Your work will be reviewed, commented on, and/or merged.
