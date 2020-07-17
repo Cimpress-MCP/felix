@@ -7,7 +7,7 @@
 
 # Felix
 
-![Felix Logo](./logo.png)
+![Felix Logo](/readme-assets/logo.png)
 
 **Felix** rotates your IAM keys!
 
@@ -36,7 +36,7 @@ built-in providers and external plugins.
 
 ## Architecture <a name = "architecture"><a/>
 
-![Felix Architecture](./felix-architecture.png)
+![Felix Architecture](./readme-assets/felix-architecture.png)
 
 ## Deployment and Configuration <a name = "config_and_deploy"></a>
 
@@ -141,7 +141,7 @@ Your users *are* your source of truth.
 
 ## 👩‍💻 Contributing <a name="contributing"></a>
 
-Contributions to this project are welcome.  If you'd like to lend a hand with this project and have a member of the Cimpress Open Source community review for inclusion just do a standard pull request:
+Contributions to this project are welcome.  If you'd like to lend a hand have a member of the Cimpress Open Source community review for work for inclusion just do a standard pull request:
 
 1. Clone this repo
 1. Make a branch for your work
@@ -149,3 +149,6 @@ Contributions to this project are welcome.  If you'd like to lend a hand with th
 1. Push your branch!
 1. Open a Merge Request.
 1. Your work will be reviewed, commented on, and/or merged.
+
+Please note that your branch must pass our minimum commit checks prior to consideration:
+![commit-checks](readme-assets/commit-checks.png)
