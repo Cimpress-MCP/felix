@@ -53,6 +53,7 @@ Architecture for this project is relatively simple.  There are only 4 main compo
 The felix Lambda function loads AWS Parameter Store (SSM) parameters that are appropriately named (see [Configuration](#configuration) section below), creates new access keys for IAM users that are appropriately pathed (see [IAM User Path Construction](#iam_user_path) section below), and using access provided by your SSM parameters, updates your configured external system (GitLab, SumoLogic, or Travis-CI).
 
 ![Felix Architecture](./readme-assets/felix-architecture.png)
+[Felix Architecture Diagram](https://cim.link/u1h2dl)
 
 ## Deployment and Configuration <a name = "config_and_deploy"></a>
 
