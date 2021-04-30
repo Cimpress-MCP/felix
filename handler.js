@@ -14,7 +14,7 @@ function publishReports (reports, topicArn) {
   }
 
   return new Promise((resolve, reject) => {
-    var params = {
+    const params = {
       Message: JSON.stringify({
         default: `
 Felix attempted to rotate ${reports.length} keys at ${new Date()}!
