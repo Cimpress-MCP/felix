@@ -2,7 +2,7 @@ const sinon = require('sinon'),
   fs = require('fs'),
   path = require('path');
 
-var options = {};
+let options = {};
 
 const spy = sinon.spy(function (params) {
   return new Promise((resolve, reject) => {
